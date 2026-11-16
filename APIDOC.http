@@ -1,0 +1,166 @@
+# API call for creating admin 
+###
+POST http://127.0.0.1:8000/owner/register/
+Content-Type: application/json
+
+{
+  "username":"admin",
+  "email":"admin@gmail.com",
+  "password":"admin@123"
+}
+
+
+******************************************
+
+# API call for listing assements
+###
+GET http://127.0.0.1:8000/exam/assesments/
+Accept: application/json
+Authorization: Basic admin:admin@123
+
+
+# API call for Creating assements
+###
+POST  http://127.0.0.1:8000/exam/assesments/
+Content-Type : application/json
+Authorization: Basic admin:admin@123
+
+{
+    "title": "DJANGO-MAIN-EXAM",
+
+    "batch": "DJANGOjulytsr",
+
+    "exam_date": "2026-10-23",
+   
+    "start_time": "10:00",
+
+    "duration": 20
+}
+
+
+# API call for listing assements
+###
+GET http://127.0.0.1:8000/exam/assesments/1/
+Accept: application/json
+Authorization: Basic admin:admin@123
+
+# API call for Creating assements
+###
+PUT  http://127.0.0.1:8000/exam/assesments/1/
+Content-Type: application/json
+Authorization: Basic admin:admin@123
+{
+    "id": 1,
+  "title": "PY-MAIN-EXAM",
+  "batch": "DJANGOjulytsr",
+  "exam_date": "2026-10-24",
+  "start_time": "02:00:00",
+  "end_time": null,
+  "duration": 1.0,
+  "language": "python",
+  "is_active": true
+}
+
+
+# API call for listing assements
+###
+DELETE http://127.0.0.1:8000/exam/assesments/3/
+Accept: application/json
+Authorization: Basic admin:admin@123
+
+#API call for adding question
+###
+POST http://127.0.0.1:8000/assesments/5/question/ 
+Content-Type: application/json
+Authorization: Basic admin:admin@123
+
+{
+  "title" : "Write a program to sub two numbers",
+  "description" : "sub two numbers",
+  "score": 10,
+  "sample_input" : "num1=10, num2=5",
+  "sample_output" : "result = 5",
+  "question_number" : 5
+}
+
+
+#API call for retrieving a question
+###
+GET http://127.0.0.1:8000/question/4/
+Accept: application/json
+Authorization: Basic admin:admin@123
+
+#API call for updating a question
+###
+PUT http://127.0.0.1:8000/question/2/
+Content-Type: application/json
+Authorization: Basic admin:admin@123
+
+{
+  "id": 2,
+  "title": "Write a program to sub two numbers",
+  "description": "Sub two numbers",
+  "score": 10,
+  "sample_input": "num1=20, num2=10",
+  "sample_output": "result = 10",
+  "question_number": 2,
+  "created_at": "2026-10-24T08:43:32.223374Z",
+  "assesment": 3
+}
+
+#API call for deleting a question
+###
+DELETE http://127.0.0.1:8000/question/3/
+Content-Type: application/json
+Authorization: Basic admin:admin@123
+
+
+
+#API call for craeting student
+###
+POST http://127.0.0.1:8000/student/register/
+Content-Type: application/json
+
+{
+  "username":"Arun",
+  "email":"Arun@gmail.com",
+  "password":"Arun@123"
+}
+
+
+#API call for starting submission(assesment id used to start answering)
+###
+POST http://127.0.0.1:8000/assesments/5/submission/
+Content-Type: application/json
+Authorization: Basic Arun:Arun@123
+
+
+#API call for adding answer(Submitting an answer to a submission id)
+###
+POST http://127.0.0.1:8000/submission/4/answer/
+Content-Type: application/json
+Authorization: Basic Arun:Arun@123
+
+{
+  "question":5,
+  "answer_text":"sub = 5"
+}
+
+
+
+#API call for retrieving a submission(Show answers)
+###
+GET http://127.0.0.1:8000/submission/4/
+Accept: application/json
+Authorization: Basic admin:admin@123
+
+#API call for evaluating answer(for admin evaluation)
+###
+PATCH http://127.0.0.1:8000/answer/4/
+Content-Type: application/json
+Authorization: Basic admin:admin@123
+
+{
+  "marks_awarded":4,
+  "feedback":"Correct answer"
+}
